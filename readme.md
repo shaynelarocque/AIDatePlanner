@@ -1,4 +1,4 @@
-# AI Date Planner Project
+# AI Date Planner Experiment
 
 The AI Date Planner project originated as an experimental AI-based tool for the AI Edge Cases research project under Technoculture, Art, and Games (TAG) institute at Concordia University.
 
