@@ -131,6 +131,8 @@ async function launch() {
                                     11. "Topics": Suggested conversational topics for the date.
                                     12. "Activity2": An enjoyable activity for after the restaurant visit.
                                     13. "SeeAgain": Will there be a second date? Provide this information in "Y/N" format ONLY.
+
+                                    Note: Please remember that the user's description, the city, and the current season should influence your choices.
                                     `
                                 }
                             ],
