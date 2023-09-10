@@ -18,8 +18,8 @@ To setup the project on your local machine:
 The HTML file contains several form fields where you need to enter the following:
 
 - **Google Maps API Key:** You can get this from the Google Cloud Platform. This is used for geolocation services to identify the user's current city.
-- **OpenAI API Key:** You can get this from the OpenAI website. This is used to interact with the GPT-3 model.
-- **Huggingface API Key:** You can get this from the Hugging Face website. This is used to analyze the user's photo.
+- **OpenAI API Key:** You can get this from the OpenAI website. This is used to interact with the ChatGPT model of your choosing (`gpt-3.5-turbo` and `gpt-4` tested).
+- **Huggingface API Key:** You can get this from the Hugging Face website. This is used to call image captioning model which analyzes the user's photo.
 - **Huggingface Image Captioning Model:** This is the machine learning model used for analyzing the user's photo. The default model is `nlpconnect/vit-gpt2-image-captioning`.
 
 ## License
