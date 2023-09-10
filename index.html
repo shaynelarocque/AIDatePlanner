@@ -3,53 +3,107 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            position: relative;
+            max-width: 1080px;
+            max-height: 1920px;
+            min-width: 1080px;
+            min-height: 1920px;
+            overflow: hidden;
+        }
+
+        #video-container {
+            position: absolute;
+            height: 1920px;
+            width: 1080px;
+            background-image: url('./assets/frame.png');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        #video {
+            position: absolute;
+            top: 150px;
+            left: 150px;
+            height: 1380px;
+            width: 780px;
+            z-index: 1;
+        }
+
+        #secret-form {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1920px;
+            width: 1080px;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-y: scroll;
+        }
+
+        #fade-container {
+            position: absolute;
+            width: 780px;
+            height: 1380px;
+            top: 150px;
+            left: 150px;
+            background: black;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: 2;
+        }
+    </style>
 </head>
 
 <body>
-    <form class="w-[90%] mx-auto pt-8 flex flex-col items-center" onsubmit="launch(); return false;">
-        <h1 class="text-3xl font-bold text-center">
-            <span class="bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-red-500">
-                AI Date Planner Test
-            </span>
-        </h1>
-        <div class="grid grid-cols-2 gap-6 w-full max-w-xl my-8">
-            <div>
-                <input type="text" id="googlemaps-api-key"
-                    class="rounded border-2 border-orange-500 shadow-md px-3 py-2 w-full mt-6" required />
-                <label for="googlemaps-api-key" class="mt-2">Google Maps API Key</label>
-            </div>
-            <div>
-                <input type="text" id="chatgpt-api-key"
-                    class="rounded border-2 border-orange-500 shadow-md px-3 py-2 w-full mt-6" required />
-                <label for="chatgpt-api-key" class="mt-2">OpenAI API Key</label>
-            </div>
-            <div>
-                <input type="text" id="token" class="rounded border-2 border-orange-500 shadow-md px-3 py-2 w-full mt-6" />
-                <label for="token" class="mt-2">Huggingface API Key</label>
-            </div>
-            <div>
-                <input type="text" id="model" class="rounded border-2 border-orange-500 shadow-md px-3 py-2 w-full mt-6"
-                    value="nlpconnect/vit-gpt2-image-captioning" required />
-                <label for="model" class="mt-2">Huggingface Image Captioning Model</label>
-            </div>
+    <div id="fade-container"></div>
+    <video id="video" width="640" height="560" autoplay class="rounded border mt-3 mb-3"></video>
+    <div id="video-container"></div>
+    <div id="secret-form" style="display: none; z-index: 3;" class="p-5">
+        <button id="close-button" style="display: none;" class="rounded border px-3 py-1">Close</button>
+        <div class="form-group">
+            <label for="googlemaps-api-key">Google Maps API Key</label>
+            <input type="text" id="googlemaps-api-key" value=""
+                class="form-control" required />
         </div>
-        <video id="video" width="640" height="480" autoplay class="rounded-md"></video>
-        <button id="snap" class="my-8 text-white bg-gradient-to-r from-orange-500 to-red-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Snap
-            Photo
-        </button>
-        <canvas id="canvas" width="640" height="480" class="rounded-md my-6"></canvas>
-
-        <button id="submit" class="my-4 text-white bg-gradient-to-r from-orange-500 to-red-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-            Run
-        </button>
-        <p class="text-gray-400 text-md my-4">Output logs</p>
-        <div id="logs" class="bg-gray-100 rounded p-3 mb-8 text-sm">
+        <div class="form-group">
+            <label class="text-white" for="chatgpt-api-key">OpenAI API Key</label>
+            <input type="text" id="chatgpt-api-key" value=""
+                class="form-control" required />
         </div>
-        <div id="output"></div>
-    </form>
-    <script src="https://cdn.tailwindcss.com"></script>
+        <div class="form-group">
+            <label class="text-white" for="token">Huggingface API Key</label>
+            <input type="text" id="token" value="" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label class="text-white" for="model">Huggingface Image Captioning Model</label>
+            <input type="text" id="model" class="form-control" value="nlpconnect/vit-gpt2-image-captioning" required />
+        </div>
+        </form>
+        <h5 class="text-center mt-4 mb-2 text-white">Output JSON</h5>
+        <div id="logs" class="bg-white rounded p-3 mb-4 text-sm border">
+        </div>
+        <h5 class="text-center mt-4 mb-2 text-white">Output Formatted</h5>
+        <div id="output" class="bg-white rounded p-3 text-sm border">
+        </div>
+        <h5 class="text-center mt-4 mb-2 text-white">Edited Image</h5>
+        <div id="image-output" class="bg-white rounded p-3 text-sm border">
+        </div>
+        <h5 class="text-center mt-4 mb-2 text-white">Original Image</h5>
+        <canvas id="canvas" width="640" height="480" class="rounded border mt-3 mb-3"></canvas>
+    </div>
     <script type="module" src="app.js"></script>
 </body>
 

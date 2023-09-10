@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        #output-frame-image {
+            position: absolute;
+            height: 1920px;
+            width: 1080px;
+            background-image: url('./assets/frame.png');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .output {
+            position: absolute;
+            padding-top: 400px;
+            top: 550px;
+            left: 195px;
+            max-height: 600px;
+            width: 690px;
+            z-index: 1;
+            overflow: scroll;
+        }
+
+        @media print {
+            body {
+                max-width: 1080px;
+                max-height: 1920px;
+                min-width: 1080px;
+                min-height: 1920px;
+                overflow: visible;
+            }
+
+            #output-frame-image {
+                height: 1920px;
+                width: 1080px;
+                background-image: url('./assets/frame.png');
+                background-size: cover;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 2;
+                overflow: visible;
+            }
+
+            .output {
+                padding-top: 300px;
+                top: 0px;
+                left: 0px;
+                max-height: 600px;
+                width: 1080px;
+                z-index: 1;
+                overflow: visible;
+            }
+
+            @media print {
+
+                #fade-container,
+                #output-frame-image {
+                    display: none;
+                }
+            }
+
+            #text-output {
+                max-width: 100%;
+            }
+
+            #output-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            #fade-container {
+                width: 780px;
+                height: 1380px;
+                top: 150px;
+                left: 150px;
+                background: black;
+                opacity: 1;
+                transition: opacity 3s ease-in-out;
+                z-index: 2;
+            }
+
+            img {
+                border-radius: 20px;
+            }
+        }
+
+        #text-output {
+            max-width: 100%;
+        }
+
+        #output-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(calc(-1 * var(--totalHeight)));
+            }
+        }
+
+        #fade-container {
+            position: absolute;
+            width: 780px;
+            height: 1380px;
+            top: 150px;
+            left: 150px;
+            background: black;
+            opacity: 1;
+            transition: opacity 3s ease-in-out;
+            z-index: 2;
+        }
+
+        img {
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="fade-container"></div>
+    <div id="output-frame-image"></div>
+    <div class="output px-5">
+        <div id="output-content" class="section-to-print">
+            <div id="image-output"></div>
+            <div id="text-output"></div>
+        </div>
+    </div>
+    </div>
+    <script>
+    </script>
+    <script src="output.js"></script>
+</body>
+
+</html>
