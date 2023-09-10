@@ -2,7 +2,7 @@
 
 The AI Date Planner project originated as an experimental AI-based tool for the AI Edge Cases research project under Technoculture, Art, and Games (TAG) institute at Concordia University.
 
-This project is a tongue-in-cheek modernization of old-school "Love-O-Meter" machines often found in penny arcades, created to explore the limits of social, political, and ethical acceptability in AI applications for public engagement. It explores how future powerful AI may seep into important life decision-making, in this case, choosing a perfect partner for ones self, commodified as an arcade machine.
+This project is a tongue-in-cheek modernization of old-school "Love-O-Meter" machines often found in penny arcades, created to explore the limits of social, political, and ethical acceptability in AI applications for public engagement. It explores how powerful AI in the future may seep into important life decisions; in this case, choosing a partner for one's self, commodified as an arcade machine.
 
 It uses AI to create a unique date plan for the user. The application uses machine learning models to analyze a photo of the user, their location, and the current season to generate a plan that matches their look and location. The project makes use of OpenAI's ChatGPT, Google Maps API, Hugging Face's inference API, and your device's built-in camera. The frontend is built using HTML, CSS, and JavaScript (Featuring a Midjourney-generated image of a Love-O-Meter)
 
